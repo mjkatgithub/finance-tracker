@@ -5,7 +5,9 @@
         <UIcon :name="icon" :class="[iconColor]" />
         <div>{{ transaction.description }}</div>
       </div>
-      <UBadge color="white" v-if="transaction.category">{{ transaction.category }}</UBadge>
+      <div>
+        <UBadge color="white" v-if="transaction.category">{{ transaction.category }}</UBadge>
+      </div>
     </div>
 
     <div class="flex items-center justify-end space-x-2">
