@@ -43,10 +43,10 @@
 </template>
 
 <script setup>
-import { transactionViewOptions } from '~/constants';
+import { transactionViewOptions } from '~/constants'
 const supabase = useSupabaseClient()
 
-const selectedView = ref(transactionViewOptions[1]);
+const selectedView = ref(transactionViewOptions[1])
 const transactions = ref([])
 const isLoading = ref(false)
 const isOpen = ref(false)
