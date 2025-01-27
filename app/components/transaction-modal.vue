@@ -5,7 +5,7 @@
         Add Transaction
       </template>
       
-      <UForm :state="state" :schema="schema" ref="form" @submit="save" >
+      <UForm :state="state" :schema="schema" @submit="save" >
         <UFormGroup :required="true" label="Transaction Type" name="type" class="mb-4">
           <USelect placeholder="Select the transaction type" :options="types" v-model="state.type" />
         </UFormGroup>
@@ -64,8 +64,6 @@ const schema = z.intersection(
   z.discriminatedUnion('type', [incomeSchema, expenseSchema, investmentSchema, savingSchema]),
   defaultSchema
 )
-
-const form = ref()
 
 const save = async () => {
   console.log('save called')
