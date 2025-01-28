@@ -5,7 +5,7 @@
         Add Transaction
       </template>
       
-      <UForm :state="state" :schema="schema" @submit="save" >
+      <UForm :state="state" :schema="schema" ref="form" @submit="save" >
         <UFormGroup :required="true" label="Transaction Type" name="type" class="mb-4">
           <USelect placeholder="Select the transaction type" :options="types" v-model="state.type" />
         </UFormGroup>
@@ -65,20 +65,33 @@ const schema = z.intersection(
   defaultSchema
 )
 
+const form = ref()
+
 const save = async () => {
+  if(form.value.errors.length) return
   console.log('save called')
 }
 
-const state = ref({
+const initialState = {
   type: undefined,
   amount: 0,
   created_at: undefined,
   description: undefined,
   category: undefined
+}
+const state = ref({
+  ...initialState
 })
+const resetForm = () => {
+  Object.assign(state.value, initialState)
+  form.value.clear()
+}
 
 const isOpen = computed({
   get:() => props.modelValue,
-  set: (value) => emit('update:modelValue', value)
+  set: (value) => {
+    if(!value) resetForm()
+    emit('update:modelValue', value)
+  }
 })
 </script>
