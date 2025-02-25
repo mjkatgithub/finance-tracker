@@ -10,6 +10,11 @@ export default defineNuxtConfig({
   modules: ['@nuxt/ui', '@nuxtjs/supabase'],
 
   supabase: {
-    redirect: false
+    redirect: true
+  },
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.BASE_URL ?? 'http://localhost:3000'
+    }
   }
 })
